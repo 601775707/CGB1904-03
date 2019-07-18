@@ -1,15 +1,15 @@
 #超市会员管理系统  
 #07-18
 
-com.cy.aspect  切面类
-com.cy.config  配置类
-com.cy.controller  控制层
-com.cy.dao  dao层
-com.cy.entity  实体类
-com.cy.exception  异常处理类
-com.cy.service  service层
-com.cy.serviceImpl  service实现类
-com.cy.vo  vo类
+com.cy.aspect  切面类  
+com.cy.config  配置类  
+com.cy.controller  控制层  
+com.cy.dao  dao层  
+com.cy.entity  实体类  
+com.cy.exception  异常处理类  
+com.cy.service  service层  
+com.cy.serviceImpl  service实现类  
+com.cy.vo  vo类  
 
 ※账号:admin 密码:123  
 
