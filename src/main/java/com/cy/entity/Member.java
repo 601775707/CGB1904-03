@@ -1,4 +1,4 @@
-package com.cy.dao;
+package com.cy.entity;
 
 import java.util.Date;
 
