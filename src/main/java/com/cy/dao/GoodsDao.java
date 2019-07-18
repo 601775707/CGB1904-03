@@ -1,6 +1,8 @@
 package com.cy.dao;
 
 import org.apache.ibatis.annotations.Mapper;
+import com.cy.entity.Goods;
+import com.cy.vo.BaseDao;
 
 /**
  * 商品 dao
@@ -9,8 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 
 @Mapper
-public interface GoodsDao {
-	
-	
+public interface GoodsDao extends BaseDao<Goods>{
 	
 }
