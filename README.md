@@ -16,7 +16,7 @@ com.cy.vo  vo类
 ---------------------------------  
 会员信息表:member ※增加salt字段  
 会员类别表:member_grade  
-礼品表:gift 
+礼品表:gift  
 礼品兑换记录表:exchange_record  
 商品表:commodity  
 商品购买记录表:transaction_record  
