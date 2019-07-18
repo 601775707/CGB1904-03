@@ -2,8 +2,6 @@ package com.cy.entity;
 
 import java.util.Date;
 
-import com.cy.vo.MemberState;
-
 import lombok.Data;
 import lombok.ToString;
 
@@ -14,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class Member {
 	// 主键id
-	private Integer id;
+	private String id;
 	// 余额
 	private double balance;
 	// 生日
@@ -31,8 +29,8 @@ public class Member {
 	private String phone;
 	// 性别
 	private String sex;
-	// 会员状态,枚举
-	private MemberState state;
+	// 会员状态
+	private String state;
 	// 会员等级
 	private Integer memberGradeId;
 	// 邮箱

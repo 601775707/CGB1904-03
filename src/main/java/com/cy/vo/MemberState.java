@@ -1,8 +1,9 @@
 package com.cy.vo;
 
 /**
- * 用户状态枚举类
+ * 会员状态枚举
  */
 public enum MemberState {
-	停用,挂失,正常
+	正常, 停用, 挂失;
+	
 }
