@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cy.dao.MemberDao;
+import com.cy.entity.Member;
 import com.cy.exception.ServiceException;
 import com.cy.service.MemberService;
 import com.cy.vo.MemberState;
@@ -32,9 +33,12 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 		int rows;
+		Member member = new Member();
+		member.setId(id);
+		member.setState(state);
 		// 更新会员状态
 		try {
-			rows = memberDao.updateStateById(id, state);
+			rows = memberDao.updateByPrimaryKeySelective(member);
 		} catch (Exception e) {
 			throw new ServiceException("更新失败");
 		}

@@ -2,6 +2,9 @@ package com.cy.entity;
 
 import java.util.Date;
 
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -10,8 +13,10 @@ import lombok.ToString;
  */
 @Data
 @ToString
+@Table(name = "member")
 public class Member {
 	// 主键id
+	@Id
 	private String id;
 	// 余额
 	private double balance;
