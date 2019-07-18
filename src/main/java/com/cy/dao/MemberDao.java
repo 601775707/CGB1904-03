@@ -1,7 +1,5 @@
 package com.cy.dao;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,5 +19,6 @@ public interface MemberDao {
 	int updateStateById(
 			@Param("id")String id, 
 			@Param("state")String state);
+	
 	
 }

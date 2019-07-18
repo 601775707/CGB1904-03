@@ -15,6 +15,12 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	/**
+	 * 施工中
+	 * @param id
+	 * @param state
+	 * @return
+	 */
 	@PostMapping("modifyMemberState")
 	public String modifyMemberState(String id, String state) {
 		int rows = memberService.updateStateById(id, state);
