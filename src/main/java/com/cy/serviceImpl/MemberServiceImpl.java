@@ -22,7 +22,7 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDao memberDao;
 	
 	/**
-	 * 验证传入数据,修改会员状态
+	 * 修改会员状态
 	 */
 	@Override
 	public int updateStateById(String id, String state) {
