@@ -3,6 +3,8 @@ package com.cy.web;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import com.cy.vo.JsonResult;
+
 
 /**
  * 全局异常处理类
@@ -15,8 +17,9 @@ public class GlobalExceptionHandler {
 	 * @param e
 	 */
 	@ExceptionHandler(RuntimeException.class)
-	public void doHandleRuntimeException(
+	public JsonResult doHandleRuntimeException(
 			RuntimeException e) {
 		e.printStackTrace();
+		return new JsonResult(e);
 	}
 }
