@@ -1,5 +1,6 @@
 package com.cy.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Id;
@@ -14,7 +15,8 @@ import lombok.ToString;
 @Data
 @ToString
 @Table(name = "member")
-public class Member {
+public class Member implements Serializable {
+	private static final long serialVersionUID = 6934858098744925993L;
 	// 主键id
 	@Id
 	private String id;

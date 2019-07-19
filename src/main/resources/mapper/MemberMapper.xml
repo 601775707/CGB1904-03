@@ -3,5 +3,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cy.dao.MemberDao">
 
+	<select id="findMemberStateObjects"
+		resultType="com.cy.entity.Member">
+		select id,member_Name memberName,state
+		from member
+		<where>
+			<if test="memberName!=null and memberName!=''"></if>
+			and member_Name like concat('%',#{memberName},'%')
+		</where>
+	</select>
 
 </mapper>

@@ -1,5 +1,7 @@
 package com.cy.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,12 +9,15 @@ import com.cy.dao.MemberDao;
 import com.cy.entity.Member;
 import com.cy.exception.ServiceException;
 import com.cy.service.MemberService;
-import com.cy.vo.MemberState;
-import com.sun.xml.internal.ws.api.model.MEP;
+import com.cy.vo.MemberStateObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 
 @Service
 public class MemberServiceImpl implements MemberService {
-
+	// 记录条数
+	public static final int PAGE_SIZE = 3;
+	
 	@Autowired
 	private MemberDao memberDao;
 	
@@ -21,17 +26,6 @@ public class MemberServiceImpl implements MemberService {
 	 */
 	@Override
 	public int updateStateById(String id, String state) {
-		// id非空验证
-		if (id==null) {
-			throw new ServiceException("必须选择正确的会员id");
-		}
-		// 会员等级合法性验证
-		try {
-			Enum.valueOf(MemberState.class, state);
-		} catch (Exception e) {
-			throw new ServiceException("会员状态不正确");
-		}
-		
 		int rows;
 		Member member = new Member();
 		member.setId(id);
@@ -43,9 +37,40 @@ public class MemberServiceImpl implements MemberService {
 			throw new ServiceException("更新失败");
 		}
 		if (rows==0) {
-			throw new ServiceException("会员记录可能已经不存在");
+			throw new ServiceException("会员记录可能已经不存在了");
 		}
 		return rows;
 	}
+
+	/**
+	 * 返回会员状态修改分页信息
+	 */
+	@Override
+	public PageInfo<Member> findMemberStateObjects(Integer currentPage, String memberName) {
+		PageHelper.startPage(currentPage, PAGE_SIZE);
+		List<Member> list = memberDao.findMemberStateObjects(currentPage, memberName);
+		PageInfo<Member> info = new PageInfo<>(list);
+		return info;
+	}
+	
+	/**
+	 * 根据会员id删除会员信息
+	 */
+	@Override
+	public int deleteObjectById(String id) {
+		// 删除会员信息
+		int rows = 0;
+		try {
+			rows = memberDao.deleteByPrimaryKey(id);
+		} catch (Exception e) {
+			throw new ServiceException("删除失败");
+		}
+		
+		if (rows==0) {
+			throw new ServiceException("会员记录可能已经不存在了");
+		}
+		return rows;
+	}
+
 
 }

@@ -255,11 +255,11 @@
             data: {currentPage: pageNum - 1, memberName:memberName},
             success: function (data) {
                 console.log(data);
-                totalPages = data.totalPages;
+                totalPages = data.content.pages;
                 var flag = 0;
                 var tableContent = $('#tableContent');
                 tableContent.html('');
-                $.each(data.content, function (index, content) {
+                $.each(data.content.list, function (index, content) {
                     console.log(content);
                     if (flag % 2 === 1)
                         tableContent.html(tableContent.html() + fillTableHtml('gradeU odd', content));
@@ -284,27 +284,27 @@
                 });
 
                 //totalPages
-                if (data.number + 1 >= totalPages - 1)
+                if (data.content.pageNum + 1 >= totalPages - 1)
                     var inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + (totalPages - 1) + ')" href="javascript:void(0)">上一页</a></li>';
-                if (data.number <= 0)
+                if (data.content.pageNum <= 0)
                     inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + 1 + ')" href="javascript:void(0)">上一页</a></li>';
                 else
-                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + data.number + ')" href="javascript:void(0)">上一页</a></li>';
+                    inHTML = '<li class="page-item"><a class="page-link" onclick="updateData(' + data.content.pageNum + ')" href="javascript:void(0)">上一页</a></li>';
 
-                for (var i = data.number - 1; i <= data.number + 3; i++) {
+                for (var i = data.content.pageNum - 1; i <= data.content.pageNum + 3; i++) {
                     if (i < 1)
                         continue;
-                    if (i > data.totalPages)
+                    if (i > data.content.pages)
                         break;
-                    if (data.number + 1 === i)
+                    if (data.content.pageNum + 1 === i)
                         inHTML += '<li class="active page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
                     else
                         inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + i + ')" href="javascript:void(0)">' + i + '</a></li>';
                 }
-                if (data.number + 1 >= totalPages)
+                if (data.content.pageNum + 1 >= totalPages)
                     inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + totalPages + ')" href="javascript:void(0)">下一页</a></li>';
                 else
-                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + (data.number + 2) + ')" href="javascript:void(0)">下一页</a></li>';
+                    inHTML += '<li class="page-item"><a class="page-link" onclick="updateData(' + (data.content.pageNum + 2) + ')" href="javascript:void(0)">下一页</a></li>';
                 $('#page').html(inHTML);
 
             }
@@ -323,7 +323,7 @@
                 type:'POST',
                 data:{id:id,state:state},
                 success:function (data) {
-                    alert(data);
+                    alert(data.message);
                 }
 
             })
